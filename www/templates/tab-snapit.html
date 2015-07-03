@@ -1,0 +1,27 @@
+<ion-view view-title="Snap It">
+  <ion-content ng-controller="SnapitCtrl" ng-init="loadImages()" style="background: #e8ebf1;" class="padding">
+    <div class="list card">
+      <div class="item item-body">
+        <p>
+          Workplace Selfies - Better than those of the snobs who created this app!!! 
+        </p>
+      </div>
+    </div>
+    <button 
+        class="button button-icon icon ion-plus-circled"></button>
+     <div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">
+        <div class="col col-25" ng-if="$index < images.length">
+            <img ng-src="{{images[$index].src}}" width="100%" />
+        </div>
+        <div class="col col-25" ng-if="$index + 1 < images.length">
+            <img ng-src="{{images[$index + 1].src}}" width="100%" />
+        </div>
+        <div class="col col-25" ng-if="$index + 2 < images.length">
+            <img ng-src="{{images[$index + 2].src}}" width="100%" />
+        </div>
+        <div class="col col-25" ng-if="$index + 3 < images.length">
+            <img ng-src="{{images[$index + 3].src}}" width="100%" />
+        </div>
+    </div>  
+  </ion-content>
+</ion-view>
