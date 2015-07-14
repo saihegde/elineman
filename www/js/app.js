@@ -135,6 +135,15 @@ angular.module('starter', [
         }
       }
   })
+  .state('tab.calculator', {
+      url:'/calculator',
+      views: {
+        'tab-calculator': {
+            templateUrl: 'templates/tab-calculator.html',
+            controller: 'CalculatorCtrl'
+        }
+      }
+  })
   .state('tab.snapit', {
       url:'/snapit',
       views: {
