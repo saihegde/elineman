@@ -1,0 +1,38 @@
+<ion-view view-title="Calculator">
+    <ion-content style="background: #e8ebf1;" class="padding">
+        
+        <div class="list">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Unit
+            </div>
+            <select ng-model="unit">
+              <option selected>AWG</option>
+              <option>MCM</option>
+              <option>Circular MILS</option>
+            </select>
+          </label>
+
+        </div>
+        
+        
+        <div class="list">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              {{unit}}
+            </div>
+            <select ng-model="selectedWire" ng-options="wire as wire.awg for wire in wires"></select>    
+          </label>
+        </div>    
+
+        
+        <div class="list card">
+          <div class="item item-text-wrap">
+              Circular Mil : <b>{{selectedWire.circularMil}}</b><br/>
+              Diameter Mil : <b>{{selectedWire.diameterMil}}</b><br/>
+              Area : <b>{{selectedWire.area}}</b> mm2<br/>
+              Diameter : <b>{{selectedWire.diameter}}</b> mm<br/>
+          </div>
+        </div>
+    </ion-content>
+</ion-view>
