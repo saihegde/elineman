@@ -8,26 +8,64 @@
             </div>
             <select ng-model="unit">
               <option selected>AWG</option>
-              <option>MCM</option>
-              <option>Circular MILS</option>
+              <option>Circular Mil</option>
+              <option>Diameter Mil</option>
+              <option>Area</option>
+              <option>Diameter</option>
             </select>
           </label>
 
         </div>
         
         
-        <div class="list">
+        <div class="list" ng-show="unit == 'AWG'">
             <label class="item item-input item-select">
             <div class="input-label">
-              {{unit}}
+              AWG
             </div>
             <select ng-model="selectedWire" ng-options="wire as wire.awg for wire in wires"></select>    
           </label>
-        </div>    
-
+        </div>
         
-        <div class="list card">
+        <div class="list" ng-show="unit == 'Circular Mil'">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Circular Mil
+            </div>
+            <select ng-model="selectedWire" ng-options="wire as wire.circularMil for wire in wires"></select>    
+          </label>
+        </div>
+        
+        <div class="list" ng-show="unit == 'Diameter Mil'">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Diameter Mil
+            </div>
+            <select ng-model="selectedWire" ng-options="wire as wire.diameterMil for wire in wires"></select>    
+          </label>
+        </div>
+        
+        <div class="list" ng-show="unit == 'Area'">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Area
+            </div>
+            <select ng-model="selectedWire" ng-options="wire as wire.area for wire in wires"></select>    
+          </label>
+        </div>
+        
+        <div class="list" ng-show="unit == 'Diameter'">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Diameter
+            </div>
+            <select ng-model="selectedWire" ng-options="wire as wire.diameter for wire in wires"></select>    
+          </label>
+        </div>
+        
+        <div class="list card" ng-show="unit != null">
           <div class="item item-text-wrap">
+              AWG : <b>{{selectedWire.awg}}</b><br/>
               Circular Mil : <b>{{selectedWire.circularMil}}</b><br/>
               Diameter Mil : <b>{{selectedWire.diameterMil}}</b><br/>
               Area : <b>{{selectedWire.area}}</b> mm2<br/>
