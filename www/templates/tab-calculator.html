@@ -4,6 +4,20 @@
         <div class="list">
             <label class="item item-input item-select">
             <div class="input-label">
+              Calculator
+            </div>
+            <select ng-model="calculatorType">
+              <option selected>AWG - Circular Mil</option>
+              <option>kVA - Amperage</option>
+            </select>
+          </label>
+
+        </div>
+        
+        <div ng-show="calculatorType == 'AWG - Circular Mil'">
+        <div class="list">
+            <label class="item item-input item-select">
+            <div class="input-label">
               Unit
             </div>
             <select ng-model="unit">
@@ -72,5 +86,6 @@
               Diameter : <b>{{selectedWire.diameter}}</b> mm<br/>
           </div>
         </div>
+        </div>    
     </ion-content>
 </ion-view>
