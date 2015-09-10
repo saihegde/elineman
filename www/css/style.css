@@ -1,1 +1,15 @@
 /* Empty. Add your own CSS if you like */
+.left{
+  float: left;
+  width: 50%;
+}
+
+ul .right{
+  float: right;
+  width: 50%;
+}
+
+ul li .right{
+  float: right;
+  font-weight: bold;
+}

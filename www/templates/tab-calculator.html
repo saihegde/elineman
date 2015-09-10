@@ -1,20 +1,22 @@
 <ion-view view-title="Calculator">
     <ion-content style="background: #e8ebf1;" class="padding">
-        
+
         <div class="list">
             <label class="item item-input item-select">
             <div class="input-label">
               Calculator
             </div>
             <select ng-model="calculatorType">
-              <option selected>AWG - Circular Mil</option>
-              <option>kVA - Amperage</option>
+              <option selected>American Wire Sizes</option>
+              <option>Transformer Full Load Currents</option>
+              <option>Max Use Voltage for Rubber Protective Equipment</option>
             </select>
           </label>
 
         </div>
-        
-        <div ng-show="calculatorType == 'AWG - Circular Mil'">
+
+        <div ng-show="calculatorType == 'American Wire Sizes'">
+
         <div class="list">
             <label class="item item-input item-select">
             <div class="input-label">
@@ -30,62 +32,107 @@
           </label>
 
         </div>
-        
-        
+
+
         <div class="list" ng-show="unit == 'AWG'">
-            <label class="item item-input item-select">
+          <label class="item item-input item-select">
             <div class="input-label">
               AWG
             </div>
-            <select ng-model="selectedWire" ng-options="wire as wire.awg for wire in wires"></select>    
+            <select ng-model="selectedWire" ng-options="wire as wire.awg for wire in wires"></select>
           </label>
         </div>
-        
+
         <div class="list" ng-show="unit == 'Circular Mil'">
             <label class="item item-input item-select">
             <div class="input-label">
               Circular Mil
             </div>
-            <select ng-model="selectedWire" ng-options="wire as wire.circularMil for wire in wires"></select>    
+            <select ng-model="selectedWire" ng-options="wire as wire.circularMil for wire in wires"></select>
           </label>
         </div>
-        
+
         <div class="list" ng-show="unit == 'Diameter Mil'">
             <label class="item item-input item-select">
             <div class="input-label">
               Diameter Mil
             </div>
-            <select ng-model="selectedWire" ng-options="wire as wire.diameterMil for wire in wires"></select>    
+            <select ng-model="selectedWire" ng-options="wire as wire.diameterMil for wire in wires"></select>
           </label>
         </div>
-        
+
         <div class="list" ng-show="unit == 'Area'">
             <label class="item item-input item-select">
             <div class="input-label">
               Area
             </div>
-            <select ng-model="selectedWire" ng-options="wire as wire.area for wire in wires"></select>    
+            <select ng-model="selectedWire" ng-options="wire as wire.area for wire in wires"></select>
           </label>
         </div>
-        
+
         <div class="list" ng-show="unit == 'Diameter'">
             <label class="item item-input item-select">
             <div class="input-label">
               Diameter
             </div>
-            <select ng-model="selectedWire" ng-options="wire as wire.diameter for wire in wires"></select>    
+            <select ng-model="selectedWire" ng-options="wire as wire.diameter for wire in wires"></select>
           </label>
         </div>
-        
-        <div class="list card" ng-show="unit != null">
+
+        <div class="list card animated bounceInRight" ng-show="unit != null">
           <div class="item item-text-wrap">
-              AWG : <b>{{selectedWire.awg}}</b><br/>
-              Circular Mil : <b>{{selectedWire.circularMil}}</b><br/>
-              Diameter Mil : <b>{{selectedWire.diameterMil}}</b><br/>
-              Area : <b>{{selectedWire.area}}</b> mm2<br/>
-              Diameter : <b>{{selectedWire.diameter}}</b> mm<br/>
+            <ul class="left">
+              <li>AWG :</li>
+              <li>Circular Mil :</li>
+              <li>Diameter Mil :</li>
+              <li>Area :</li>
+              <li>Diameter :</li>
+            </ul>
+            <ul class="right">
+              <li class="right">{{selectedWire.awg}}</li>
+              <li class="right">{{selectedWire.circularMil}}</li>
+              <li class="right">{{selectedWire.diameterMil}}</li>
+              <li class="right">{{selectedWire.area}}</li>
+              <li class="right">{{selectedWire.diameter}}</li>
+            </ul>
           </div>
         </div>
-        </div>    
+        </div>
+
+        <div ng-show="calculatorType == 'Transformer Full Load Currents'">
+          <div class="list" >
+            <ion-radio ng-model="phaseType" ng-value="'1'">Single Phase</ion-radio>
+            <ion-radio ng-model="phaseType" ng-value="'3'">Three Phase</ion-radio>
+          </div>
+          <div class="list" >
+            <label class="item item-input item-select">
+              <div class="input-label">
+                kVA
+              </div>
+              <select ng-model="singlePhaseKvaRating" ng-options="singlePhaseKvaRating as singlePhaseKvaRating for singlePhaseKvaRating in singlePhaseKvaRatings" ng-show="phaseType == '1'"></select>
+              <select ng-model="threePhaseKvaRating" ng-options="threePhaseKvaRating as threePhaseKvaRating for threePhaseKvaRating in threePhaseKvaRatings" ng-show="phaseType == '3'"></select>
+            </label>
+          </div>
+          <div class="list">
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Circuit Voltage
+              </div>
+              <select ng-model="singlePhaseCircuitVoltage" ng-options="singlePhaseCircuitVoltage as singlePhaseCircuitVoltage for singlePhaseCircuitVoltage in singlePhaseCircuitVoltages" ng-show="phaseType == '1'"></select>
+              <select ng-model="threePhaseCircuitVoltage" ng-options="threePhaseCircuitVoltage as threePhaseCircuitVoltage for threePhaseCircuitVoltage in threePhaseCircuitVoltages" ng-show="phaseType == '3'"></select>
+            </label>
+          </div>
+          <div class="list card animated bounceInRight" ng-show="phaseType == '1' && singlePhaseKvaRating != null && singlePhaseCircuitVoltage !=null">
+            <div class="item item-text-wrap">
+              <p><strong>{{1000 * singlePhaseKvaRating / singlePhaseCircuitVoltage}}</strong> Amps</p>
+            </div>
+          </div>
+          <div class="list card animated bounceInRight" ng-show="phaseType == '3' && threePhaseKvaRating != null && threePhaseCircuitVoltage !=null">
+            <div class="item item-text-wrap">
+              <p><strong>{{1000 * threePhaseKvaRating / (threePhaseCircuitVoltage*1.73)}}</strong> Amps</p>
+            </div>
+          </div>
+        </div>
+
     </ion-content>
 </ion-view>
