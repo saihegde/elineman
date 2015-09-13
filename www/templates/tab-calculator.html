@@ -79,7 +79,7 @@
           </label>
         </div>
 
-        <div class="list card animated bounceInRight" ng-show="unit != null">
+        <div class="list card animated bounceInRight" ng-show="unit != null && selectedWire != null">
           <div class="item item-text-wrap">
             <ul class="left">
               <li>AWG :</li>
@@ -90,10 +90,10 @@
             </ul>
             <ul class="right">
               <li class="right">{{selectedWire.awg}}</li>
-              <li class="right">{{selectedWire.circularMil}}</li>
-              <li class="right">{{selectedWire.diameterMil}}</li>
-              <li class="right">{{selectedWire.area}}</li>
-              <li class="right">{{selectedWire.diameter}}</li>
+              <li class="right">{{selectedWire.circularMil}} mm</li>
+              <li class="right">{{selectedWire.diameterMil}} mm</li>
+              <li class="right">{{selectedWire.area}} mm&sup2;</li>
+              <li class="right">{{selectedWire.diameter}} mm</li>
             </ul>
           </div>
         </div>
